@@ -7,7 +7,7 @@ const PORT = Number(process.env.PORT) || 8000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 
 const baseUrl = process.env.CODESPACE_NAME
-  ? `https://${process.env.CODESPACE_NAME}-${PORT}.app.github.dev`
+  ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
   : `http://localhost:${PORT}`;
 
 app.use(express.json());
