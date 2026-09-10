@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchApiCollection } from '../lib/api';
 
+// API path: /api/activities/
+
 function Activities() {
   const [activities, setActivities] = useState([]);
   const [error, setError] = useState('');

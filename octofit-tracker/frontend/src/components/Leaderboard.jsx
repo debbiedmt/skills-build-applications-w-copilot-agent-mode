@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchApiCollection } from '../lib/api';
 
+// API path: /api/leaderboard/
+
 function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [error, setError] = useState('');
