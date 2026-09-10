@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getApiBaseUrl } from '../lib/api';
 
-// API path: /api/activities/
+const API_PATH = '/api/activities/';
 
 function Activities() {
   const [activities, setActivities] = useState([]);
@@ -9,7 +9,7 @@ function Activities() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const url = `${getApiBaseUrl()}/activities/`;
+    const url = `${getApiBaseUrl()}${API_PATH}`;
 
     fetch(url, {
       headers: {
