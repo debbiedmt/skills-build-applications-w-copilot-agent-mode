@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchApiCollection } from '../lib/api';
+import { getApiBaseUrl } from '../lib/api';
 
 // API path: /api/activities/
 
@@ -9,8 +9,33 @@ function Activities() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchApiCollection('activities')
-      .then((data) => setActivities(data))
+    const url = `${getApiBaseUrl()}/activities/`;
+
+    fetch(url, {
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Request failed: ${response.status} ${response.statusText}`);
+        }
+
+        const payload = await response.json();
+        const data = Array.isArray(payload)
+          ? payload
+          : Array.isArray(payload?.results)
+            ? payload.results
+            : Array.isArray(payload?.data)
+              ? payload.data
+              : Array.isArray(payload?.items)
+                ? payload.items
+                : Array.isArray(payload?.records)
+                  ? payload.records
+                  : [];
+
+        setActivities(data);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
